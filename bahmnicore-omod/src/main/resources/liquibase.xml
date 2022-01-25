@@ -3874,8 +3874,8 @@
         <sqlFile path="V1_98_WardsListSql.sql"/>
     </changeSet>
 
-    <changeSet id="bahmni-PatientSearch-Update-202201250930" author="Kavitha S, Soorya Kumaran C">
-        <comment>update the property value of emrapi.sqlSearch.activePatients search query to obtain active patients based on preferred and non voided</comment>
+    <changeSet id="bahmni-PatientSearch-Update-202201250315" author="Kavitha S, Soorya Kumaran C">
+        <comment>Update the property values for searching active patients based on preferred and non voided</comment>
         <sqlFile path="V1_99_PatientSearchSql.sql"/>
     </changeSet>
 
