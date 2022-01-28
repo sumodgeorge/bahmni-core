@@ -1,7 +1,8 @@
 package org.bahmni.module.admin.csv.persister;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bahmni.csv.EntityPersister;
 import org.bahmni.csv.Messages;
 import org.bahmni.module.admin.csv.models.MultipleEncounterRow;
@@ -47,7 +48,7 @@ public class EncounterPersister implements EntityPersister<MultipleEncounterRow>
     private boolean shouldMatchExactPatientId;
     private String loginUuid;
 
-    private static final Logger log = Logger.getLogger(EncounterPersister.class);
+    private static final Logger log = LogManager.getLogger(EncounterPersister.class);
 
     public void init(UserContext userContext, String patientMatchingAlgorithmClassName, boolean shouldMatchExactPatientId, String loginUuid) {
         this.userContext = userContext;
