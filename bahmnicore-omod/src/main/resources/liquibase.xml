@@ -4535,8 +4535,13 @@
             values ('bahmni.admin.csv.upload.dateFormat', 'yyyy-M-d', 'Default date format for all CSV imports', uuid());
         </sql>
     </changeSet>
-    <changeSet id="bahmni-core-RenameColumn-202201021608" author="Rohit, Deepthi, Soorya, Kavitha">
+    <changeSet id="bahmni-core-202202232338" author="Rohit, Deepthi, Soorya, Kavitha">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="concept_numeric" columnName="precise" />
+        </preConditions>
         <comment>Rename Column Precise To AllowDecimal in ConceptNumeric Table</comment>
-        <sqlFile path="V1_100__RenameColumnPreciseInConceptNumericTable.sql"/>
+        <sql>
+            ALTER TABLE concept_numeric CHANGE precise allow_decimal tinyint(1);
+        </sql>
     </changeSet>
 </databaseChangeLog>

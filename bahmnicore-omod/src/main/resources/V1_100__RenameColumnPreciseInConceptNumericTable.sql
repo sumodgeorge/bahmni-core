@@ -1,1 +1,0 @@
-alter table concept_numeric change precise allow_decimal tinyint(1);
