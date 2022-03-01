@@ -146,7 +146,7 @@
         <dependency>
                 <groupId>org.bahmni.module</groupId>
                 <artifactId>form2-utils</artifactId>
-                <version>0.94.2-SNAPSHOT</version>
+                <version>${bahmniJavaUtilsVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.openmrs.web</groupId>
