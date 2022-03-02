@@ -4523,4 +4523,25 @@
     		INSERT INTO role_privilege (role, privilege) VALUES ('Anonymous', 'Get Locations');
     	</sql>
     </changeSet>
+    <changeSet id="bahmni-core-202102230936" author="Siva, Rakesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM global_property where property = 'bahmni.admin.csv.upload.dateFormat'
+            </sqlCheck>
+        </preConditions>
+        <comment>Add default date format for all CSV imports</comment>
+        <sql>
+            insert into global_property (`property`, `property_value`, `description`, `uuid`)
+            values ('bahmni.admin.csv.upload.dateFormat', 'yyyy-M-d', 'Default date format for all CSV imports', uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="bahmni-core-202202241220" author="Rohit, Deepthi, Soorya, Kavitha">
+        <preConditions onFail="MARK_RAN" >
+            <not><columnExists tableName="concept_numeric" columnName="allow_decimal" /></not>
+        </preConditions>
+        <comment>Rename Column Precise To AllowDecimal in ConceptNumeric Table</comment>
+        <sql>
+            ALTER TABLE concept_numeric CHANGE precise allow_decimal tinyint(1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
