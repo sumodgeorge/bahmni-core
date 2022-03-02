@@ -3541,7 +3541,7 @@
         </preConditions>
         <comment>add concept numeric row to all numeric concepts</comment>
         <sql>
-            INSERT INTO concept_numeric (concept_id, precise) (SELECT concept_id,0 FROM concept WHERE
+            INSERT INTO concept_numeric (concept_id,precise) (SELECT concept_id,0 FROM concept WHERE
             datatype_id  = (SELECT concept_datatype_id FROM concept_datatype WHERE name = 'Numeric')
             AND concept_id NOT IN (SELECT concept_id FROM concept_numeric));
         </sql>
