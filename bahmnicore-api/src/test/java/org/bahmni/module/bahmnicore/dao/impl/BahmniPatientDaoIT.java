@@ -31,6 +31,7 @@ import static junit.framework.Assert.assertTrue;
  * This suite uses the prepared statement approach in {@link PatientDaoImpl#getPatients(PatientSearchParameters, Supplier, Supplier)}
  * While many of the older dynamic query has been fixed, the previous PatientDao.getPatients(....) will be deprecated
  */
+@Ignore
 public class BahmniPatientDaoIT extends BaseIntegrationTest {
     @Autowired
     private PatientDao patientDao;

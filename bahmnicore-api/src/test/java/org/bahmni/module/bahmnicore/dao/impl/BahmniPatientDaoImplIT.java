@@ -31,6 +31,7 @@ import static junit.framework.Assert.assertTrue;
  * @see @{@link BahmniPatientDaoIT} instead.
  *
  */
+@Ignore
 public class BahmniPatientDaoImplIT extends BaseIntegrationTest {
     @Autowired
     private PatientDao patientDao;
