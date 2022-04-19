@@ -84,7 +84,7 @@
         <property name="moduleService">
             <list merge="true">
                 <value>org.openmrs.module.bahmniemrapi.encountertransaction.service.BahmniEncounterTransactionService</value>
-                <ref local="bahmniEncounterTransactionService"/>
+                <ref bean="bahmniEncounterTransactionService"/>
             </list>
         </property>
     </bean>
@@ -102,7 +102,7 @@
         <property name="transactionManager">
             <ref bean="transactionManager"/>
         </property>
-        <property name="target"><ref local="bahmniEncounterTransactionServiceTarget"/></property>
+        <property name="target"><ref bean="bahmniEncounterTransactionServiceTarget"/></property>
         <property name="preInterceptors">
             <ref bean="serviceInterceptors"/>
         </property>
