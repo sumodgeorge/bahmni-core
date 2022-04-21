@@ -289,12 +289,12 @@ public class BahmniFormDetailsServiceImplTest {
     }
 
     private void verifyCreateFormDetailsMockCall(int wantedNumberOfInvocations) {
-        verifyStatic(VerificationModeFactory.times(wantedNumberOfInvocations));
+        verifyStatic(FormType.class, VerificationModeFactory.times(wantedNumberOfInvocations));
         FormDetailsMapper.createFormDetails(anyListOf(Obs.class), any(FormType.class));
     }
 
     private void verifyFilterFormBuilderObsMockCall(int wantedNumberOfInvocations) {
-        verifyStatic(VerificationModeFactory.times(wantedNumberOfInvocations));
+        verifyStatic(FormType.class, VerificationModeFactory.times(wantedNumberOfInvocations));
         FormUtil.filterFormBuilderObs(obs);
     }
 
