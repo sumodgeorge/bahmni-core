@@ -25,8 +25,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <openMRSVersion>2.4.0</openMRSVersion>
-        <openMRSWebServicesVersion>2.27.0</openMRSWebServicesVersion>
-        <springVersion>4.3.18 RELEASE</springVersion>
+        <openMRSWebServicesVersion>2.29.0</openMRSWebServicesVersion>
+        <springVersion>5.2.9.RELEASE</springVersion>
         <atomfeed.version>1.10.1</atomfeed.version>
         <addressHierarchyVersion>2.12.0</addressHierarchyVersion>
         <reportingModuleVersion>1.21.0</reportingModuleVersion>
@@ -378,13 +378,6 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.jcodec</groupId>
                 <artifactId>jcodec</artifactId>
                 <version>0.2.1</version>
@@ -419,28 +412,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junitVersion}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junitVersion}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-params</artifactId>
-                <version>5.7.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.vintage</groupId>
-                <artifactId>junit-vintage-engine</artifactId>
-                <version>${junitVersion}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-module-junit4</artifactId>
                 <version>${powerMockVersion}</version>
@@ -448,20 +419,20 @@
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito2</artifactId>
+                <artifactId>powermock-api-mockito</artifactId>
                 <version>${powerMockVersion}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>mockito-all</artifactId>
+                        <groupId>org.mockito</groupId>
+                    </exclusion>
+                </exclusions>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-all</artifactId>
                 <version>${hamcrestVersion}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito</artifactId>
-                <version>${powerMockVersion}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -480,6 +451,12 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockitoVersion}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>2.2.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

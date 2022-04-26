@@ -148,9 +148,9 @@ public class EncounterSessionMatcherTest {
 
         when(userContext.getAuthenticatedUser()).thenReturn(creator);
 
-        when(encounterService.getEncounters(any(Patient.class), any(Location.class),
+        when(encounterService.getEncounters(any(Patient.class), eq(null),
                 any(Date.class), any(Date.class), any(Collection.class),
-                any(Collection.class), any(Collection.class), any(Collection.class),
+                any(Collection.class), any(Collection.class), eq(null),
                 any(Collection.class), eq(false))).thenReturn(Arrays.asList(encounterOne));
         when(bahmniProgramWorkflowService.getEncountersByPatientProgramUuid(null)).thenReturn(Collections.<Encounter>emptyList());
     }
@@ -264,7 +264,7 @@ public class EncounterSessionMatcherTest {
         e2.setLocation(location);
 
         when(userContext.getAuthenticatedUser()).thenReturn(creator1);
-        when(encounterService.getEncounters(any(Patient.class), any(Location.class), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), eq(false))).thenReturn(Arrays.asList(e1, e2));
+        when(encounterService.getEncounters(any(Patient.class), eq(null), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), eq(null), eq(null), eq(null), eq(false))).thenReturn(Arrays.asList(e1, e2));
         when(bahmniVisitLocationService.getVisitLocation(any(String.class))).thenReturn(location);
 
         Encounter encounterReturned = encounterSessionMatcher.findEncounter(null, encounterParameters);
@@ -337,7 +337,7 @@ public class EncounterSessionMatcherTest {
         encounters.add(e1);
 
         when(userContext.getAuthenticatedUser()).thenReturn(creator1);
-        when(encounterService.getEncounters(any(Patient.class), any(Location.class), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), eq(false)))
+        when(encounterService.getEncounters(any(Patient.class), eq(null), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), eq(null), eq(null), eq(null), eq(false)))
                 .thenReturn(encounters);
         when(episodeService.getEpisodeForEncounter(e1)).thenReturn(new Episode());
 
@@ -369,7 +369,7 @@ public class EncounterSessionMatcherTest {
 
         when(bahmniVisitLocationService.getVisitLocation(any(String.class))).thenReturn(location);
         when(userContext.getAuthenticatedUser()).thenReturn(creator1);
-        when(encounterService.getEncounters(any(Patient.class), any(Location.class), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), eq(false)))
+        when(encounterService.getEncounters(any(Patient.class), eq(null), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), eq(null), eq(null), eq(null), eq(false)))
                 .thenReturn(encounters);
         when(episodeService.getEpisodeForEncounter(e1)).thenReturn(new Episode());
 
@@ -406,7 +406,7 @@ public class EncounterSessionMatcherTest {
 
 
         when(userContext.getAuthenticatedUser()).thenReturn(creator1);
-        when(encounterService.getEncounters(any(Patient.class), any(Location.class), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), any(Collection.class), eq(false)))
+        when(encounterService.getEncounters(any(Patient.class), eq(null), any(Date.class), any(Date.class), any(Collection.class), any(Collection.class), eq(null), eq(null), eq(null), eq(false)))
                 .thenReturn(Arrays.asList(e1));
         when(bahmniVisitLocationService.getVisitLocation(loginLocation.getUuid())).thenReturn(loginLocation);
         when(bahmniVisitLocationService.getVisitLocation(encounterLocation.getUuid())).thenReturn(loginLocation);
