@@ -187,14 +187,17 @@ public class BahmniDiagnosisServiceImplTest {
         when(visitService.getVisitByUuid("visitId")).thenReturn(visit);
         when(patientService.getPatientByUuid("patientId")).thenReturn(patient);
         when(bahmniDiagnosisMetadata.getDiagnosisSetConcept()).thenReturn(diagnosisSetConcept);
-        when(obsService.getObservations(eq(Arrays.asList((Person) patient)), eq(new ArrayList<>(visit.getEncounters())), eq(Arrays.asList(diagnosisSetConcept)), anyListOf(Concept.class), anyList(), anyList(), anyList(),
-                anyInt(), anyInt(), Matchers.any(Date.class), Matchers.any(Date.class), eq(false)))
+//        when(obsService.getObservations(eq(Arrays.asList((Person) patient)), eq(new ArrayList<>(visit.getEncounters())), eq(Arrays.asList(diagnosisSetConcept)), anyListOf(Concept.class), anyList(), anyList(), anyList(),
+//                anyInt(), anyInt(), Matchers.any(Date.class), Matchers.any(Date.class), eq(false)))
+//                .thenReturn(Arrays.asList(diagnosis.getExistingObs()));
+        when(obsService.getObservations(eq(Arrays.asList((Person) patient)), eq(new ArrayList<>(visit.getEncounters())), eq(Arrays.asList(diagnosisSetConcept)), eq(null), eq(null), eq(null), anyList(),
+                eq(null), eq(null), eq(null), eq(null), eq(false)))
                 .thenReturn(Arrays.asList(diagnosis.getExistingObs()));
         when(bahmniDiagnosisMetadata.buildDiagnosisFromObsGroup(diagnosis.getExistingObs(), new ArrayList<Concept>(), new ArrayList<Concept>())).thenReturn(diagnosis);
         when(diagnosisMapper.convert(any(Diagnosis.class))).thenReturn(null);
         when(bahmniDiagnosisMetadata.findInitialDiagnosisUuid(diagnosis.getExistingObs())).thenReturn("firstDiagnosisObsId");
         when(bahmniDiagnosisMetadata.findInitialDiagnosis(updatedDiagnosis.getExistingObs())).thenReturn(diagnosis.getExistingObs());
-        when(bahmniDiagnosisMetadata.mapBahmniDiagnosis(any(EncounterTransaction.Diagnosis.class), any(EncounterTransaction.Diagnosis.class), eq(true), eq(false), eq(false), eq(true))).thenReturn(bahmniDiagnosisRequest);
+        when(bahmniDiagnosisMetadata.mapBahmniDiagnosis(eq(null), eq(null), eq(true), eq(false), eq(false), eq(true))).thenReturn(bahmniDiagnosisRequest);
 
         List<BahmniDiagnosisRequest> bahmniDiagnosisRequests = bahmniDiagnosisService.getBahmniDiagnosisByPatientAndVisit("patientId", "visitId");
 
