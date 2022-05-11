@@ -21,7 +21,9 @@ import org.openmrs.api.VisitService;
 import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniObservation;
 import org.openmrs.module.bahmniemrapi.encountertransaction.mapper.OMRSObsToBahmniObsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -147,7 +149,7 @@ public class BahmniObsServiceImpl implements BahmniObsService {
             return new ArrayList<>();
         for (Concept concept : concepts) {
             List<Obs> observations = obsDao.getObsByPatientAndVisit(patientUuid, Arrays.asList(concept.getName().getName()),
-                    visitDao.getVisitIdsFor(patientUuid, numberOfVisits), -1, ObsDaoImpl.OrderBy.DESC, obsIgnoreList, filterOutOrderObs, order, null, null);
+                    visitDao.getVisitIdsFor(patientUuid, numberOfVisits), Integer.MAX_VALUE, ObsDaoImpl.OrderBy.DESC, obsIgnoreList, filterOutOrderObs, order, null, null);
             if (CollectionUtils.isNotEmpty(observations)) {
                 latestObs.addAll(filterIgnoredObs(obsIgnoreList, getAllLatestObsForAConcept(observations)));
             }
