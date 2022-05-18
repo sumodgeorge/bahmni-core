@@ -8,6 +8,7 @@ import org.bahmni.module.bahmnicore.web.v1_0.mapper.BahmniFormBuilderObsToTabula
 import org.bahmni.module.bahmnicore.web.v1_0.mapper.BahmniObservationsToTabularViewMapper;
 import org.bahmni.test.builder.ConceptBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -66,6 +67,7 @@ import static org.powermock.api.mockito.PowerMockito.spy;
 import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
 import static org.powermock.api.mockito.PowerMockito.when;
 
+@Ignore
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ObsToObsTabularFlowSheetController.class, DuplicateObservationsMatcher.class, LocaleUtility.class})
 public class ObsToObsTabularFlowSheetControllerTest {

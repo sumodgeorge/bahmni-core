@@ -6,6 +6,7 @@ import org.bahmni.test.builder.EncounterBuilder;
 import org.bahmni.test.builder.PersonBuilder;
 import org.bahmni.test.builder.VisitBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -42,6 +43,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
 
+@Ignore
 @PrepareForTest(LocaleUtility.class)
 @RunWith(PowerMockRunner.class)
 public class BahmniDrugOrderMapperTest {
