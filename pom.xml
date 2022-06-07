@@ -42,7 +42,7 @@
         <auditLogVersion>1.0-SNAPSHOT</auditLogVersion>
         <bacteriology.version>1.3.0-SNAPSHOT</bacteriology.version>
         <rulesEngineVersion>0.92-SNAPSHOT</rulesEngineVersion>
-        <bahmniJavaUtilsVersion>0.94.2</bahmniJavaUtilsVersion>
+        <bahmniJavaUtilsVersion>0.95-SNAPSHOT</bahmniJavaUtilsVersion>
         <log4jVersion>2.17.1</log4jVersion>
 
         <!--test dependencies-->
@@ -387,15 +387,16 @@
                 <artifactId>jcodec-javase</artifactId>
                 <version>0.2.1</version>
             </dependency>
-            <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.el</artifactId>
-                <version>3.0.0</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.glassfish</groupId>-->
+<!--                <artifactId>javax.el</artifactId>-->
+<!--                <version>3.0.0</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
                 <version>2.2.4</version>
+                <scope>provided</scope>
             </dependency>
 
             <!--test libraries-->
@@ -660,10 +661,6 @@
           <name>bahmni-artifactory-release</name>
           <url>https://repo.mybahmni.org.s3.amazonaws.com/artifactory/release</url>
       </repository>
-        <repository>
-            <id>rubygems-releases</id>
-            <url>https://rubygems-proxy.torquebox.org/releases</url>
-        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
