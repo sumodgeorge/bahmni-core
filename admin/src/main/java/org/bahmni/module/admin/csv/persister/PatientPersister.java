@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.bahmni.common.config.registration.service.RegistrationPageService;
 import org.bahmni.csv.EntityPersister;
 import org.bahmni.csv.Messages;
+import org.bahmni.form2.service.FormFieldPathService;
 import org.bahmni.module.admin.csv.models.PatientRow;
 import org.bahmni.module.admin.csv.service.CSVAddressService;
 import org.bahmni.module.admin.csv.service.CSVPatientService;
@@ -32,7 +33,6 @@ public class PatientPersister implements EntityPersister<PatientRow> {
     @Autowired
     private ConceptService conceptService;
 
-    @Autowired
     private RegistrationPageService registrationPageService;
 
     @Autowired
@@ -42,6 +42,11 @@ public class PatientPersister implements EntityPersister<PatientRow> {
     private CSVAddressService csvAddressService;
 
     private static final Logger log = LogManager.getLogger(PatientPersister.class);
+
+    @Autowired
+    public PatientPersister(RegistrationPageService registrationPageService) {
+        this.registrationPageService = registrationPageService;
+    }
 
     public void init(UserContext userContext) {
         this.userContext = userContext;
