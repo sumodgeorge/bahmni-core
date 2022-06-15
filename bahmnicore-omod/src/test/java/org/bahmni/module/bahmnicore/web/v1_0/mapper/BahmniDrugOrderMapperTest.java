@@ -40,10 +40,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-@Ignore
 @PrepareForTest(LocaleUtility.class)
 @RunWith(PowerMockRunner.class)
 public class BahmniDrugOrderMapperTest {
@@ -120,7 +120,7 @@ public class BahmniDrugOrderMapperTest {
         assertEquals("vuuid", mappedOrder.getVisit().getUuid());
         assertEquals("{\"dose\": \"2.0\", \"doseUnits\": \"Tablet\"}", mappedOrder.getDosingInstructions().getAdministrationInstructions());
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class BahmniDrugOrderMapperTest {
         assertEquals("Orally", mappedOrder.getDosingInstructions().getRoute());
         assertEquals("vuuid", mappedOrder.getVisit().getUuid());
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 
     @Test
@@ -255,6 +255,6 @@ public class BahmniDrugOrderMapperTest {
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
         assertEquals(reasonETConcept, mappedOrder.getOrderReasonConcept());
         assertEquals("AEID1234", mappedOrder.getOrderReasonText());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 }

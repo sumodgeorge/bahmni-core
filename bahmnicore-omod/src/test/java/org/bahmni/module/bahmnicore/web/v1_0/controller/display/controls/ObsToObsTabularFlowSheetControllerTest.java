@@ -67,7 +67,6 @@ import static org.powermock.api.mockito.PowerMockito.spy;
 import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-@Ignore
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ObsToObsTabularFlowSheetController.class, DuplicateObservationsMatcher.class, LocaleUtility.class})
 public class ObsToObsTabularFlowSheetControllerTest {
@@ -147,6 +146,7 @@ public class ObsToObsTabularFlowSheetControllerTest {
     }
 
     @Test
+    @Ignore // Test mechanism failure
     public void shouldReturnEmptyPivotTableWhenFormNamesAreNotGiven() throws ParseException {
 
         PivotTable pivotTable = obsToObsPivotTableController.constructPivotTableFor(any(), any(), any(), any(), any(),
@@ -156,6 +156,7 @@ public class ObsToObsTabularFlowSheetControllerTest {
     }
 
     @Test
+    @Ignore // Test mechanism failure
     public void shouldReturnEmptyPivotTableWhenConceptNamesAreNotGiven() throws ParseException {
 
         PivotTable pivotTable = obsToObsPivotTableController.constructPivotTableFor(any(), any(), any(), any(), any(),
@@ -165,6 +166,7 @@ public class ObsToObsTabularFlowSheetControllerTest {
     }
 
     @Test
+    @Ignore // Test mechanism failure
     public void shouldReturnEmptyPivotTableWhenFormNamesAreEmpty() throws ParseException {
 
         PivotTable pivotTable = obsToObsPivotTableController.constructPivotTableFor(any(), any(), any(), any(), any(),
@@ -452,7 +454,7 @@ public class ObsToObsTabularFlowSheetControllerTest {
         labMagnesiumNumeric.setHiNormal(5.0);
         labMagnesiumNumeric.setLowNormal(2.0);
         labMagnesiumNumeric.setUnits("mg");
-        when(conceptService.getConceptNumeric(anyInt())).thenReturn(labMagnesiumNumeric);
+        when(conceptService.getConceptNumeric(eq(null))).thenReturn(labMagnesiumNumeric);
 
         when(conceptService.getConceptByName("Lab, Magnesium Data")).thenReturn(labMagnesiumData);
         when(conceptService.getConceptByName("Lab, Magnesium")).thenReturn(labMagnesium);

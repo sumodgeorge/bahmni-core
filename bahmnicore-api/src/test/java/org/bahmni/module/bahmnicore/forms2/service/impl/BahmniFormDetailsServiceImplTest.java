@@ -45,7 +45,6 @@ import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
-@Ignore
 @PrepareForTest({FormType.class, FormUtil.class, FormDetailsMapper.class})
 @RunWith(PowerMockRunner.class)
 public class BahmniFormDetailsServiceImplTest {
@@ -292,7 +291,7 @@ public class BahmniFormDetailsServiceImplTest {
     }
 
     public void verifyCreateFormDetailsMockCall(int wantedNumberOfInvocations) {
-        verifyStatic(FormType.class, VerificationModeFactory.times(wantedNumberOfInvocations));
+        verifyStatic(FormDetailsMapper.class, VerificationModeFactory.times(wantedNumberOfInvocations));
         FormDetailsMapper.createFormDetails(anyListOf(Obs.class), any(FormType.class));
     }
 

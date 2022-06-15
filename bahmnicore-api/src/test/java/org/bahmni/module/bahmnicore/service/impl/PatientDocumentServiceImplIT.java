@@ -50,7 +50,6 @@ public class PatientDocumentServiceImplIT extends BaseIntegrationTest{
 		assertFalse(Files.exists(Paths.get(thumbnailUrl)));
 	}
 
-	@Ignore
 	@Test
 	public void shouldCreateThumbnailForVideo() throws Exception {
 
