@@ -7,7 +7,6 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bahmni.common.config.registration.service.RegistrationPageService;
-import org.bahmni.common.config.registration.service.impl.RegistrationPageServiceImpl;
 import org.bahmni.common.db.JDBCConnectionProvider;
 import org.bahmni.csv.CSVFile;
 import org.bahmni.csv.EntityPersister;
