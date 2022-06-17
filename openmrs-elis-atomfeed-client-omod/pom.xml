@@ -196,7 +196,6 @@
             <groupId>org.openmrs.api</groupId>
             <artifactId>openmrs-api</artifactId>
             <version>${openMRSVersion}</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.openmrs.web</groupId>

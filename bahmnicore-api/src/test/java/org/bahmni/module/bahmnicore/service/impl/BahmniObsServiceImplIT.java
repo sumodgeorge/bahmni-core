@@ -248,7 +248,7 @@ public class BahmniObsServiceImplIT extends BaseIntegrationTest {
     }
 
     @Test
-    @Ignore // org.openmrs.api.UnchangeableObjectException: editing.fields.not.allowed. This requires bean refactoring
+    @Ignore("org.openmrs.api.UnchangeableObjectException: editing.fields.not.allowed") // This requires bean refactoring
     public void shouldNotRetrieveIgnoreObsAndItsChildrenForPatientProgram() throws Exception {
         ArrayList<String> conceptNames = new ArrayList<>();
         conceptNames.add("Health Education");
@@ -263,7 +263,7 @@ public class BahmniObsServiceImplIT extends BaseIntegrationTest {
     }
 
     @Test
-    @Ignore // org.openmrs.api.UnchangeableObjectException: editing.fields.not.allowed. This requires bean refactoring
+    @Ignore("org.openmrs.api.UnchangeableObjectException: editing.fields.not.allowed") // This requires bean refactoring
     public void shouldRetrieveAllObsIncludingChildrenForPatientProgram() throws Exception {
         ArrayList<String> conceptNames = new ArrayList<>();
         conceptNames.add("Health Education");
