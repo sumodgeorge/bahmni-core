@@ -8,6 +8,7 @@ import org.bahmni.module.bahmnicore.service.BahmniProgramWorkflowService;
 import org.bahmni.test.builder.ConceptBuilder;
 import org.bahmni.test.builder.VisitBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -104,7 +105,7 @@ public class BahmniObsServiceImplTest {
         Integer numberOfVisits = 3;
         bahmniObsService.observationsFor(personUUID, asList(bloodPressureConcept), numberOfVisits, null, false, null, null, null);
         verify(obsDao).getObsByPatientAndVisit(personUUID, asList("Blood Pressure"),
-                visitDao.getVisitIdsFor(personUUID, numberOfVisits), -1, ObsDaoImpl.OrderBy.DESC, null, false, null, null, null);
+                visitDao.getVisitIdsFor(personUUID, numberOfVisits), Integer.MAX_VALUE, ObsDaoImpl.OrderBy.DESC, null, false, null, null, null);
     }
 
     @Test

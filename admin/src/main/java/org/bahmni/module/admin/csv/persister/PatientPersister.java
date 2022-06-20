@@ -32,7 +32,6 @@ public class PatientPersister implements EntityPersister<PatientRow> {
     @Autowired
     private ConceptService conceptService;
 
-    @Autowired
     private RegistrationPageService registrationPageService;
 
     @Autowired
@@ -42,6 +41,11 @@ public class PatientPersister implements EntityPersister<PatientRow> {
     private CSVAddressService csvAddressService;
 
     private static final Logger log = LogManager.getLogger(PatientPersister.class);
+
+    @Autowired
+    public PatientPersister(RegistrationPageService registrationPageService) {
+        this.registrationPageService = registrationPageService;
+    }
 
     public void init(UserContext userContext) {
         this.userContext = userContext;

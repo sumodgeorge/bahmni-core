@@ -6,6 +6,7 @@ import org.bahmni.test.builder.EncounterBuilder;
 import org.bahmni.test.builder.PersonBuilder;
 import org.bahmni.test.builder.VisitBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -39,6 +40,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -118,7 +120,7 @@ public class BahmniDrugOrderMapperTest {
         assertEquals("vuuid", mappedOrder.getVisit().getUuid());
         assertEquals("{\"dose\": \"2.0\", \"doseUnits\": \"Tablet\"}", mappedOrder.getDosingInstructions().getAdministrationInstructions());
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 
     @Test
@@ -172,7 +174,7 @@ public class BahmniDrugOrderMapperTest {
         assertEquals("Orally", mappedOrder.getDosingInstructions().getRoute());
         assertEquals("vuuid", mappedOrder.getVisit().getUuid());
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 
     @Test
@@ -253,6 +255,6 @@ public class BahmniDrugOrderMapperTest {
         assertEquals(visitDate, mappedOrder.getVisit().getStartDateTime());
         assertEquals(reasonETConcept, mappedOrder.getOrderReasonConcept());
         assertEquals("AEID1234", mappedOrder.getOrderReasonText());
-        verify(providerMapper);
+        verify(providerMapper, times(1)).map(null);
     }
 }

@@ -5,6 +5,7 @@ import org.apache.xerces.impl.dv.util.Base64;
 import org.bahmni.module.bahmnicore.BaseIntegrationTest;
 import org.bahmni.module.bahmnicore.properties.BahmniCoreProperties;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Patient;
 import org.openmrs.util.OpenmrsUtil;

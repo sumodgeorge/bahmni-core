@@ -6,7 +6,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceD
 import org.openmrs.module.webservices.rest.web.v1_0.resource.openmrs1_12.DrugResource1_12;
 
 @org.openmrs.module.webservices.rest.web.annotation.Resource(name = "v1/drug", supportedClass = org.openmrs.Drug
-        .class, supportedOpenmrsVersions = {"1.10.*", "1.11.*", "1.12.*", "2.0.*", "2.1.*", "2.2.*"}, order = 0)
+        .class, supportedOpenmrsVersions = {"1.10.* - 2.*"}, order = 0)
 public class BahmniDrugResource extends DrugResource1_12 {
 
 
