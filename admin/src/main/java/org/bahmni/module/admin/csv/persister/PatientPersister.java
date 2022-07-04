@@ -32,9 +32,11 @@ public class PatientPersister implements EntityPersister<PatientRow> {
     @Autowired
     private ConceptService conceptService;
 
-    @Autowired
     private RegistrationPageService registrationPageService;
 
+    public PatientPersister(RegistrationPageService registrationPageService){
+        this.registrationPageService = registrationPageService;
+    }
     @Autowired
     @Qualifier("adminService")
     private AdministrationService administrationService;

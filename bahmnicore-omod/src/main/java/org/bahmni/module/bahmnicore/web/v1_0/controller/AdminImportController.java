@@ -119,8 +119,11 @@ public class AdminImportController extends BaseRestController {
     @Qualifier("adminService")
     private AdministrationService administrationService;
 
-    @Autowired
     private RegistrationPageService registrationPageService;
+
+    public AdminImportController(RegistrationPageService registrationPageService){
+        this.registrationPageService = registrationPageService;
+    }
 
     @RequestMapping(value = baseUrl + "/patient", method = RequestMethod.POST)
     @ResponseBody
