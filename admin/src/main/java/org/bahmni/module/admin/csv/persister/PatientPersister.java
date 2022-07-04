@@ -34,6 +34,7 @@ public class PatientPersister implements EntityPersister<PatientRow> {
 
     private RegistrationPageService registrationPageService;
 
+    @Autowired
     public PatientPersister(RegistrationPageService registrationPageService){
         this.registrationPageService = registrationPageService;
     }

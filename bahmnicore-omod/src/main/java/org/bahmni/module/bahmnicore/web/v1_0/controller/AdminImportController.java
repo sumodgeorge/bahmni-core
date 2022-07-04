@@ -121,6 +121,7 @@ public class AdminImportController extends BaseRestController {
 
     private RegistrationPageService registrationPageService;
 
+    @Autowired
     public AdminImportController(RegistrationPageService registrationPageService){
         this.registrationPageService = registrationPageService;
     }
