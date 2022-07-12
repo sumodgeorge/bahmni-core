@@ -17,7 +17,7 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
-@Ignore
+
 public class BahmniPatientDaoImplLuceneIT extends BaseIntegrationTest {
     @Autowired
     private PatientDao patientDao;
