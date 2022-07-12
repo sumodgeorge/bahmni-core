@@ -12,11 +12,11 @@ import org.openmrs.ConceptSource;
 import org.openmrs.Duration;
 import org.openmrs.OrderFrequency;
 import org.openmrs.api.ConceptService;
-import org.openmrs.module.bahmniemrapi.builder.DrugOrderBuilder;
 import org.openmrs.module.bahmniemrapi.drugorder.DrugOrderUtil;
 import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniEncounterTransaction;
 import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
 import org.openmrs.module.emrapi.encounter.service.OrderMetadataService;
+import org.openmrs.module.emrapi.encounter.builder.DrugOrderBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;

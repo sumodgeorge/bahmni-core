@@ -2,7 +2,6 @@ package org.bahmni.module.bahmnicore.web.v1_0.search;
 
 import org.bahmni.module.bahmnicore.service.BahmniProgramWorkflowService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

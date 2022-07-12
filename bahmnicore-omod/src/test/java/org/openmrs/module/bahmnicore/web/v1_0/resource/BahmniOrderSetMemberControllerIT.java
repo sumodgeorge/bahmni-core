@@ -5,7 +5,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.module.bahmnicore.web.v1_0.search.BahmniMainResourceControllerTest;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.OrderSet;
 import org.openmrs.OrderSetMember;

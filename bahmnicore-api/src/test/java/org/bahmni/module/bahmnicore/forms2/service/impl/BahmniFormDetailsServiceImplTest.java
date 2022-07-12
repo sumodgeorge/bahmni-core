@@ -7,7 +7,6 @@ import org.bahmni.module.bahmnicore.forms2.util.FormUtil;
 import org.bahmni.module.bahmnicore.service.BahmniProgramWorkflowService;
 import org.bahmni.module.bahmnicore.service.BahmniVisitService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

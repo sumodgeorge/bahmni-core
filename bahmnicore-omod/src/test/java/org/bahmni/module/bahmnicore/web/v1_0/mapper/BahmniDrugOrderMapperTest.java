@@ -6,7 +6,6 @@ import org.bahmni.test.builder.EncounterBuilder;
 import org.bahmni.test.builder.PersonBuilder;
 import org.bahmni.test.builder.VisitBuilder;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

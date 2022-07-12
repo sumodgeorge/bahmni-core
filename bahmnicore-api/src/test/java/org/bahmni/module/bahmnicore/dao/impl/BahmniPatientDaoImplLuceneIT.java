@@ -4,7 +4,6 @@ import org.bahmni.module.bahmnicore.BaseIntegrationTest;
 import org.bahmni.module.bahmnicore.contract.patient.response.PatientResponse;
 import org.bahmni.module.bahmnicore.dao.PatientDao;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -16,7 +15,6 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-
 
 public class BahmniPatientDaoImplLuceneIT extends BaseIntegrationTest {
     @Autowired

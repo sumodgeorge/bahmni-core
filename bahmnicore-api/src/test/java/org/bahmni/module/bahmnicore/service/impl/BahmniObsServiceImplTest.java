@@ -8,7 +8,6 @@ import org.bahmni.module.bahmnicore.service.BahmniProgramWorkflowService;
 import org.bahmni.test.builder.ConceptBuilder;
 import org.bahmni.test.builder.VisitBuilder;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -28,9 +27,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
