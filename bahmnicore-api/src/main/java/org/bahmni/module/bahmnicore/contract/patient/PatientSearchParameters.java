@@ -3,6 +3,7 @@ package org.bahmni.module.bahmnicore.contract.patient;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class PatientSearchParameters {
@@ -55,7 +56,7 @@ public class PatientSearchParameters {
         }
         this.setAddressFieldValue(context.getParameter("addressFieldValue"));
         Map parameterMap = context.getRequest().getParameterMap();
-        this.setAddressSearchResultFields((String[]) parameterMap.get("addressSearchResultsConfig"));
+        this.setAddressSearchResultFields(!Arrays.toString((Object[]) parameterMap.get("addressSearchResultsConfig")).equals("[{}]") ? (String[]) parameterMap.get("addressSearchResultsConfig") : null);
         this.setPatientSearchResultFields((String[]) parameterMap.get("patientSearchResultsConfig"));
         this.setPatientAttributes((String[]) parameterMap.get("patientAttributes"));
         this.setProgramAttributeFieldValue(context.getParameter("programAttributeFieldValue"));
