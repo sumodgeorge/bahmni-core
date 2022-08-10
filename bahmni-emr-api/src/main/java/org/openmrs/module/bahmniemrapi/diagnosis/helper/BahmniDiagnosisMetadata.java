@@ -8,6 +8,7 @@ import org.openmrs.module.bahmniemrapi.diagnosis.contract.BahmniDiagnosis;
 import org.openmrs.module.bahmniemrapi.diagnosis.contract.BahmniDiagnosisRequest;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis;
+import org.openmrs.module.emrapi.diagnosis.DiagnosisMetadata;
 import org.openmrs.module.emrapi.encounter.EncounterTransactionMapper;
 import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,7 +138,8 @@ public class BahmniDiagnosisMetadata {
         if (diagnosisObsGroup == null)
             return null;
 
-        Diagnosis diagnosis = emrApiProperties.getDiagnosisMetadata().toDiagnosis(diagnosisObsGroup);
+//        Diagnosis diagnosis = emrApiProperties.getDiagnosisMetadata().toDiagnosis(diagnosisObsGroup);
+        Diagnosis diagnosis = new BahmniDiagnosisConceptSetDescriptor(this.conceptService, this.conceptService.getConceptSourceByName("org.openmrs.module.emrapi")).toDiagnosis(diagnosisObsGroup);
 
         Set<Concept> filter = new HashSet<>();
         filter.addAll(nonDiagnosisConcepts);
@@ -152,7 +154,9 @@ public class BahmniDiagnosisMetadata {
     }
 
     public Concept getDiagnosisSetConcept() {
-        return emrApiProperties.getDiagnosisMetadata().getDiagnosisSetConcept();
+
+//         return emrApiProperties.getDiagnosisMetadata().getDiagnosisSetConcept();
+        return new BahmniDiagnosisConceptSetDescriptor(this.conceptService, this.conceptService.getConceptSourceByName("org.openmrs.module.emrapi")).getDiagnosisSetConcept();
     }
 
     public boolean isDiagnosis(Obs obs) {
@@ -160,11 +164,13 @@ public class BahmniDiagnosisMetadata {
     }
 
     public Concept getCodedDiagnosisConcept() {
-        return emrApiProperties.getDiagnosisMetadata().getCodedDiagnosisConcept();
+        return new BahmniDiagnosisConceptSetDescriptor(this.conceptService, this.conceptService.getConceptSourceByName("org.openmrs.module.emrapi")).getCodedDiagnosisConcept();
+//        return emrApiProperties.getDiagnosisMetadata().getCodedDiagnosisConcept();
     }
 
     public Concept getNonCodedDiagnosisConcept() {
-        return emrApiProperties.getDiagnosisMetadata().getNonCodedDiagnosisConcept();
+        return new BahmniDiagnosisConceptSetDescriptor(this.conceptService, this.conceptService.getConceptSourceByName("org.openmrs.module.emrapi")).getNonCodedDiagnosisConcept();
+//        return emrApiProperties.getDiagnosisMetadata().getNonCodedDiagnosisConcept();
     }
 
     public Obs findMatchingDiagnosis(Collection<Obs> observations, BahmniDiagnosis bahmniDiagnosis) {
