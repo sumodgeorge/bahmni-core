@@ -2,6 +2,7 @@ package org.openmrs.module.bahmniemrapi.diagnosis.helper;
 
 import org.openmrs.*;
 import org.openmrs.module.emrapi.descriptor.ConceptSetDescriptor;
+import org.openmrs.module.emrapi.descriptor.MissingConceptException;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis.Certainty;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis.Order;
@@ -51,6 +52,8 @@ public class BahmniDiagnosisConceptSetDescriptor extends ConceptSetDescriptor {
     @Override
     protected Concept getMappingConcept(ConceptService conceptService, String primaryConceptCode, String conceptSourceName) {
         List<Concept> primaryConcepts = conceptService.getConceptsByMapping(primaryConceptCode, conceptSourceName, false);
+        if (primaryConcepts.size() < 1)
+            throw new MissingConceptException("Couldn't find primary concept for " + this.getClass().getSimpleName() + " which should be mapped as " + conceptSourceName + ":" + primaryConceptCode);
         return primaryConcepts.size() > 1 ? getBahmniDiagnosisConcept(primaryConcepts, conceptSourceName) :
                 primaryConcepts.get(0);
     }
