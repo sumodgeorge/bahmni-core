@@ -56,7 +56,7 @@ public class PatientSearchParameters {
         }
         this.setAddressFieldValue(context.getParameter("addressFieldValue"));
         Map parameterMap = context.getRequest().getParameterMap();
-        this.setAddressSearchResultFields(!Arrays.toString((Object[]) parameterMap.get("addressSearchResultsConfig")).equals("[{}]") ? (String[]) parameterMap.get("addressSearchResultsConfig") : null);
+        this.setAddressSearchResultFields(getAddressConfigIfExists(parameterMap.get("addressSearchResultsConfig")));
         this.setPatientSearchResultFields((String[]) parameterMap.get("patientSearchResultsConfig"));
         this.setPatientAttributes((String[]) parameterMap.get("patientAttributes"));
         this.setProgramAttributeFieldValue(context.getParameter("programAttributeFieldValue"));
@@ -64,6 +64,10 @@ public class PatientSearchParameters {
         this.setFilterPatientsByLocation(Boolean.valueOf(context.getParameter("filterPatientsByLocation")));
         this.setFilterOnAllIdentifiers(Boolean.valueOf(context.getParameter("filterOnAllIdentifiers")));
         this.setLoginLocationUuid(context.getParameter("loginLocationUuid"));
+    }
+
+    private String[] getAddressConfigIfExists(Object addressConfig) {
+        return !Arrays.toString((Object[]) addressConfig).equals("[{}]") ? (String[]) addressConfig : null;
     }
 
     public String getIdentifier() {
