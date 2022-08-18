@@ -113,9 +113,49 @@
         </property>
     </bean>
 
+    <bean id="bahmniEmrEncounterService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target" ref="bahmniEmrEncounterServiceTarget"/>
+        <property name="preInterceptors">
+            <ref bean="serviceInterceptors"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="transactionAttributeSource"/>
+        </property>
+    </bean>
+
+    <!--
+    to change: BahmniEmrApiProperties - derived from EmrApiProperties
+    -->
+    <bean id="bahmniEmrApiProperties" class="org.openmrs.module.bahmniemrapi.BahmniEmrApiProperties" primary="true"></bean>
+
+    <bean id="bahmniEncounterObservationServiceHelper" class="org.openmrs.module.emrapi.encounter.EncounterObservationServiceHelper">
+        <constructor-arg name="conceptService" ref="conceptService"/>
+        <constructor-arg name="emrApiProperties" ref="bahmniEmrApiProperties"/>
+        <constructor-arg name="obsService" ref="obsService"/>
+        <constructor-arg name="orderService" ref="orderService"/>
+        <constructor-arg name="obsMapper" ref="obsMapper"/>
+    </bean>
+
+    <bean name="bahmniEmrEncounterServiceTarget" class="org.openmrs.module.emrapi.encounter.EmrEncounterServiceImpl">
+        <constructor-arg name="administrationService" ref="adminService"/>
+        <constructor-arg name="encounterDispositionServiceHelper" ref="encounterDispositionServiceHelper"/>
+        <constructor-arg name="encounterObservationServiceHelper" ref="bahmniEncounterObservationServiceHelper"/>
+        <constructor-arg name="encounterProviderServiceHelper" ref="encounterProviderServiceHelper"/>
+        <constructor-arg name="encounterService" ref="encounterService"/>
+        <constructor-arg name="encounterTransactionMapper" ref="encounterTransactionMapper"/>
+        <constructor-arg name="locationService" ref="locationService"/>
+        <constructor-arg name="patientService" ref="patientService"/>
+        <constructor-arg name="providerService" ref="providerService"/>
+        <constructor-arg name="visitService" ref="visitService"/>
+        <constructor-arg name="emrOrderService" ref="emrOrderService"/>
+    </bean>
+
     <bean id="bahmniEncounterTransactionServiceTarget" class="org.openmrs.module.bahmniemrapi.encountertransaction.impl.BahmniEncounterTransactionServiceImpl" autowire="constructor">
         <constructor-arg  ref="encounterService"/>
-        <constructor-arg  ref="emrEncounterService"/>
+        <constructor-arg  ref="bahmniEmrEncounterServiceTarget"/>
         <constructor-arg  ref="encounterTransactionMapper"/>
         <constructor-arg  ref="encounterTypeIdentifier"/>
         <constructor-arg>

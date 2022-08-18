@@ -13,6 +13,7 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.descriptor.ConceptSetDescriptorField;
 import org.openmrs.module.emrapi.diagnosis.CodedOrFreeTextAnswer;
+import org.openmrs.module.emrapi.diagnosis.DiagnosisMetadata;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Metadata describing how a diagnosis is represented as an Obs group.
  */
-public class BahmniDiagnosisConceptSetDescriptor extends ConceptSetDescriptor {
+public class BahmniDiagnosisConceptSetDescriptor extends DiagnosisMetadata {
 
     public static final String SAME_AS = "SAME-AS";
     public static final String BAHMNICORE_VERSION = "BAHMNI-CORE-1.0";
