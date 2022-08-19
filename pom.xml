@@ -24,9 +24,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openMRSVersion>2.4.2</openMRSVersion>
+        <openMRSVersion>2.5.5</openMRSVersion>
         <openMRSWebServicesVersion>2.29.0</openMRSWebServicesVersion>
-        <springVersion>5.2.9.RELEASE</springVersion>
+        <springVersion>5.2.14.RELEASE</springVersion>
         <atomfeed.version>1.10.1</atomfeed.version>
         <addressHierarchyVersion>2.14.2</addressHierarchyVersion>
         <reportingModuleVersion>1.23.0</reportingModuleVersion>
@@ -47,13 +47,12 @@
         <log4jVersion>2.17.1</log4jVersion>
         <idgenWebServicesVersion>1.3-SNAPSHOT</idgenWebServicesVersion>
         <providermanagementVersion>2.13.0</providermanagementVersion>
+        <velocityVersion>1.7</velocityVersion>
 
         <!--test dependencies-->
-
-        <junitVersion>4.13</junitVersion>
-        <powerMockVersion>2.0.7</powerMockVersion>
-        <hamcrestVersion>1.3</hamcrestVersion>
-        <mockitoVersion>3.5.11</mockitoVersion>
+        <junitVersion>4.13.2</junitVersion>
+        <powerMockVersion>2.0.9</powerMockVersion>
+        <mockitoVersion>3.12.4</mockitoVersion>
         <argLine>-Xmx1024m</argLine>
     </properties>
 
@@ -151,7 +150,7 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
                 <scope>provided</scope>
-                <version>1.6.2</version>
+                <version>${velocityVersion}</version>
             </dependency>
             <dependency>
                 <groupId>commons-httpclient</groupId>
@@ -293,18 +292,36 @@
                 <artifactId>emrapi-api</artifactId>
                 <version>${emrapi-omod.version}</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-library</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-1.12</artifactId>
                 <version>${emrapi-omod.version}</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-library</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
                 <artifactId>emrapi-api-2.2</artifactId>
                 <version>${emrapi-omod.version}</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-library</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.module</groupId>
@@ -431,12 +448,6 @@
                         <groupId>org.mockito</groupId>
                     </exclusion>
                 </exclusions>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-all</artifactId>
-                <version>${hamcrestVersion}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
