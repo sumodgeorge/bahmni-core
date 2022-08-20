@@ -113,6 +113,15 @@
         </property>
     </bean>
 
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list merge="true">
+                <value>org.openmrs.module.emrapi.encounter.EmrEncounterService</value>
+                <ref bean="bahmniEmrEncounterService"/>
+            </list>
+        </property>
+    </bean>
+
     <bean id="bahmniEmrEncounterService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager">
             <ref bean="transactionManager"/>
@@ -129,6 +138,8 @@
     <!--
     to change: BahmniEmrApiProperties - derived from EmrApiProperties
     -->
+
+
     <bean id="bahmniEmrApiProperties" class="org.openmrs.module.bahmniemrapi.BahmniEmrApiProperties" primary="true"></bean>
 
     <bean id="bahmniEncounterObservationServiceHelper" class="org.openmrs.module.emrapi.encounter.EncounterObservationServiceHelper">
