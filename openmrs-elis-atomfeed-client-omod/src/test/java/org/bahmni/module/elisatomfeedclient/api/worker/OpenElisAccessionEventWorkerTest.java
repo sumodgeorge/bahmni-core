@@ -27,6 +27,7 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.EncounterService;
 import org.openmrs.api.ProviderService;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.context.UserContext;
 import org.openmrs.module.auditlog.service.AuditLogService;
 import org.openmrs.module.bahmniemrapi.encountertransaction.command.impl.BahmniVisitAttributeService;
 
@@ -45,9 +46,11 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import org.openmrs.util.OpenmrsUtil;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+@PowerMockIgnore("javax.management.*")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Context.class, OpenmrsUtil.class})
 public class OpenElisAccessionEventWorkerTest {
@@ -69,6 +72,8 @@ public class OpenElisAccessionEventWorkerTest {
     private AuditLogService auditLogService;
     @Mock
     private AdministrationService administrationService;
+    @Mock
+    private UserContext userContext;
 
     private OpenElisAccessionEventWorker accessionEventWorker;
     private String openElisUrl;

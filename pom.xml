@@ -50,9 +50,9 @@
         <velocityVersion>1.7</velocityVersion>
 
         <!--test dependencies-->
-        <junitVersion>4.13.2</junitVersion>
-        <powerMockVersion>2.0.9</powerMockVersion>
-        <mockitoVersion>3.12.4</mockitoVersion>
+        <junitVersion>4.13</junitVersion>
+        <powerMockVersion>2.0.7</powerMockVersion>
+        <mockitoVersion>3.5.11</mockitoVersion>
         <argLine>-Xmx1024m</argLine>
     </properties>
 
