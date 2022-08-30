@@ -37,7 +37,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
