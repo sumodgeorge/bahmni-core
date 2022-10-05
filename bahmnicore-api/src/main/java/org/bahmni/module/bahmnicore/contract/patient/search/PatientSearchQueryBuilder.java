@@ -96,24 +96,30 @@ public class PatientSearchQueryBuilder {
 		if (isBlank(name)) {
 			return this;
 		}
-		String[] nameParts = name.trim().split(" ");
+		List<String> nameParts = getParamValues(name);
 		String query_by_name_parts = "";
-		for (int i = 0; i < nameParts.length; i++) {
-			String namePart = nameParts[i];
-			//String paramValue = SqlQueryHelper.escapeSQL(namePart,true);
-			String paramValue = "%".concat(namePart).concat("%");
-			QueryParam queryParam = new QueryParam("paramName" + i, paramValue);
+		for (int i = 0; i < nameParts.size(); i++) {
+			String namePart = nameParts.get(i);
+			QueryParam queryParam = new QueryParam("paramName" + i, namePart);
 			parameters.add(queryParam);
-
 			if (!"".equals(query_by_name_parts)) {
-				query_by_name_parts += " and " + String.format(BY_NAME_PARTS, queryParam.getParamName());
+				query_by_name_parts += ( i % 2 == 0 ? " and " : " or " ) + String.format(BY_NAME_PARTS, queryParam.getParamName());
 			} else {
 				query_by_name_parts += String.format(BY_NAME_PARTS, queryParam.getParamName());
 			}
-
 		}
 		where = combine(where, "and", enclose(query_by_name_parts));
 		return this;
+	}
+
+	private List<String> getParamValues(String name){
+		List<String> list = new ArrayList<>();
+		String[] nameParts = name.trim().split(" ");
+		for(int i = 0; i < nameParts.length; i++) {
+			list.add("%".concat(nameParts[i]).concat("%"));
+			list.add(String.valueOf(nameParts[i].charAt(0)).concat("%"));
+		}
+		return list;
 	}
 
 	private String combine(String query, String operator, String condition) {
