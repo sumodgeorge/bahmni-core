@@ -3,6 +3,8 @@ package org.bahmni.module.bahmnicore.dao.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.bahmni.module.bahmnicore.contract.patient.PatientSearchParameters;
 import org.bahmni.module.bahmnicore.contract.patient.mapper.PatientResponseMapper;
 import org.bahmni.module.bahmnicore.contract.patient.response.PatientResponse;
@@ -260,8 +262,10 @@ public class PatientDaoImpl implements PatientDao {
                 .must(identifierTypeShouldJunction.createQuery())
                 .createQuery();
 //        Sort sort = new Sort( new SortField( "identifier", SortField.Type.STRING, false ) );
+        Sort sort = new Sort( new SortField( "identifierExact", SortField.Type.STRING, false ) );
         FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(booleanQuery, PatientIdentifier.class);
 //        fullTextQuery.setSort(sort);
+        fullTextQuery.setSort(sort);
         fullTextQuery.setFirstResult(offset);
         fullTextQuery.setMaxResults(length);
         return (List<PatientIdentifier>) fullTextQuery.list();
