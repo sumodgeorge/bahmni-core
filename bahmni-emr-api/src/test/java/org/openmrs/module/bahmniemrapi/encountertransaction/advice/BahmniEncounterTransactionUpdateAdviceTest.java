@@ -35,7 +35,7 @@ public class BahmniEncounterTransactionUpdateAdviceTest {
     }
 
     @Test
-    public void shouldLoadpplicationDataDirectoryPath() throws Throwable {
+    public void shouldLoadApplicationDataDirectoryPath() throws Throwable {
         PowerMockito.mockStatic(OpenmrsUtil.class);
         String path = getClass().getClassLoader().getResource("").getPath();
         // remove the trailing "/"
