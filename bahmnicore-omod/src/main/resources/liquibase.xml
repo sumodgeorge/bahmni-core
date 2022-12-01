@@ -4727,5 +4727,35 @@
         </sql>
     </changeSet>
 
+    <changeSet id="create-teleconsultation-link-role-202212012000" author="Kushboo">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role WHERE role = 'Teleconsultation:CreateLink';
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating new role Teleconsultation:CreateLink for Teleconsultation module</comment>
+        <sql>
+            INSERT INTO role(role, description, uuid) VALUES ("Teleconsultation:CreateLink", "Ability to create teleconsultation link in teleconsultation module", uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="adding-create-teleconsultation-privilege-to-teleconsultation-createLink-role-202212012000" author="Kushboo">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM privilege WHERE privilege = "Create Teleconsultation";
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM role WHERE role = "Appointments:ReadOnly";
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM role_privilege WHERE role = "Teleconsultation:CreateLink" AND privilege="Create Teleconsultation";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Create Teleconsultation privilege to Teleconsultation:CreateLink role</comment>
+        <sql>
+            INSERT INTO role_privilege(role, privilege) VALUES ("Teleconsultation:CreateLink", "Create Teleconsultation");
+        </sql>
+    </changeSet>
+
     <include file="addAtomfeedMigrations.xml"/>
 </databaseChangeLog>
