@@ -4727,7 +4727,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="create-teleconsultation-link-role-202212012000" author="Kushboo">
+    <changeSet id="create-teleconsultation-link-role-202212012000" author="BAHMNI">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) FROM role WHERE role = 'Teleconsultation:CreateLink';
@@ -4739,7 +4739,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="adding-create-teleconsultation-privilege-to-teleconsultation-createLink-role-202212012000" author="Kushboo">
+    <changeSet id="adding-create-teleconsultation-privilege-to-teleconsultation-createLink-role-202212012000" author="BAHMNI">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT count(*) FROM privilege WHERE privilege = "Create Teleconsultation";
