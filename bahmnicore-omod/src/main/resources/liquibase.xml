@@ -4744,13 +4744,10 @@
             <sqlCheck expectedResult="1">
                 SELECT count(*) FROM privilege WHERE privilege = "Create Teleconsultation";
             </sqlCheck>
-            <sqlCheck expectedResult="0">
-                SELECT count(*) FROM role_privilege WHERE role = "Teleconsultation:CreateLink" AND privilege="Create Teleconsultation";
-            </sqlCheck>
         </preConditions>
-        <comment>Adding Create Teleconsultation privilege to Teleconsultation:CreateLink role</comment>
+        <comment>Adding Create Teleconsultation privilege to Appointments:ManageAppointments role</comment>
         <sql>
-            INSERT INTO role_privilege(role, privilege) VALUES ("Teleconsultation:CreateLink", "Create Teleconsultation");
+            INSERT INTO role_privilege(role, privilege) VALUES ("Appointments:ManageAppointments", "Create Teleconsultation");
         </sql>
     </changeSet>
 
