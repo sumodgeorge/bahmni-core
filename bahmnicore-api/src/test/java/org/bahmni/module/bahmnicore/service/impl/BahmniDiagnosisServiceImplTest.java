@@ -18,6 +18,7 @@ import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.Visit;
+import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.EncounterService;
 import org.openmrs.api.ObsService;
@@ -75,8 +76,11 @@ public class BahmniDiagnosisServiceImplTest {
     @Mock
     private EmrApiProperties emrApiProperties;
 
+    @Mock
+    private AdministrationService administrationService;
+
     @InjectMocks
-    private BahmniDiagnosisServiceImpl bahmniDiagnosisService = new BahmniDiagnosisServiceImpl(encounterService, obsService, visitService, patientService, diagnosisMapper, bahmniDiagnosisMetadata, conceptService, emrApiProperties);
+    private BahmniDiagnosisServiceImpl bahmniDiagnosisService = new BahmniDiagnosisServiceImpl(encounterService, obsService, visitService, patientService, diagnosisMapper, bahmniDiagnosisMetadata, conceptService, emrApiProperties, administrationService);
 
     private String initialDiagnosisObsUUID = "initialDiagnosisObsUUID";
     private String modifiedDiagnosisObsUUID = "modifiedDiagnosisObsUUID";

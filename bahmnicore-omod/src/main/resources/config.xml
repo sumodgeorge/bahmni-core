@@ -166,4 +166,10 @@
         <description>A list of UUIDs indicating extra Patient Identifier Types that should be displayed</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>bahmni.externalTSLookupNeeded</property>
+        <defaultValue>false</defaultValue>
+        <description>Property used to determine whether external terminology server being used or not</description>
+    </globalProperty>
+
 </module>
