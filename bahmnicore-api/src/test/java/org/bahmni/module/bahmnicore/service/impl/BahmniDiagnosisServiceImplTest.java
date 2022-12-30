@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.openmrs.Concept;
@@ -30,9 +29,9 @@ import org.openmrs.module.bahmniemrapi.diagnosis.helper.BahmniDiagnosisMetadata;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis;
 import org.openmrs.module.emrapi.encounter.DiagnosisMapper;
-import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
 import org.openmrs.util.LocaleUtility;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -45,17 +44,17 @@ import java.util.Locale;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyList;
-import static org.mockito.Mockito.anyListOf;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@PowerMockIgnore("javax.management.*")
 @PrepareForTest(LocaleUtility.class)
 @RunWith(PowerMockRunner.class)
 public class BahmniDiagnosisServiceImplTest {
@@ -96,6 +95,7 @@ public class BahmniDiagnosisServiceImplTest {
 
         PowerMockito.mockStatic(LocaleUtility.class);
         PowerMockito.when(LocaleUtility.getLocalesInOrder()).thenReturn(new HashSet<>(Arrays.asList(Locale.getDefault())));
+        when(administrationService.getGlobalProperty(eq("bahmni.externalTSLookupNeeded"))).thenReturn("false");
     }
 
     @Test
@@ -227,6 +227,25 @@ public class BahmniDiagnosisServiceImplTest {
         List<BahmniDiagnosisRequest> bahmniDiagnosisRequests = bahmniDiagnosisService.getBahmniDiagnosisByPatientAndVisit("patientId", visitId);
 
         assertEquals(0, bahmniDiagnosisRequests.size());
+    }
+
+    @Test
+    public void shouldReturnFalseWhenNoExternalTerminologyServerLookupNeeded() {
+        boolean externalTerminologyServerLookupNeeded = bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded();
+        assertFalse(externalTerminologyServerLookupNeeded);
+    }
+
+    @Test
+    public void shouldReturnTrueWhenExternalTerminologyServerLookupNeeded() {
+        when(administrationService.getGlobalProperty(eq("bahmni.externalTSLookupNeeded"))).thenReturn("TRUE");
+        boolean externalTerminologyServerLookupNeeded = bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded();
+        assertTrue(externalTerminologyServerLookupNeeded);
+    }
+
+    @Test
+    public void shouldCallDiagosisSetofSetsInEmrApiWhenNoExternalTerminologyServerLookupNeeded() {
+        bahmniDiagnosisService.getDiagnosisSets();
+        verify(emrApiProperties, times(1)).getDiagnosisSets();
     }
 
     private Diagnosis getDiagnosis() {

@@ -13,7 +13,7 @@ public interface BahmniDiagnosisService {
     List<BahmniDiagnosisRequest> getBahmniDiagnosisByPatientAndVisit(String patientUuid,String visitUuid);
     List<BahmniDiagnosisRequest> getBahmniDiagnosisByPatientAndDate(String patientUuid, String date) throws ParseException;
 
-    public boolean isExternalTerminologyServerLookupNeeded();
+    boolean isExternalTerminologyServerLookupNeeded();
 
     Collection<Concept> getDiagnosisSets();
 
