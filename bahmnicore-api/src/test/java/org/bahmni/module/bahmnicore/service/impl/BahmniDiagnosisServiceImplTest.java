@@ -95,7 +95,7 @@ public class BahmniDiagnosisServiceImplTest {
 
         PowerMockito.mockStatic(LocaleUtility.class);
         PowerMockito.when(LocaleUtility.getLocalesInOrder()).thenReturn(new HashSet<>(Arrays.asList(Locale.getDefault())));
-        when(administrationService.getGlobalProperty(eq("bahmni.externalTSLookupNeeded"))).thenReturn("false");
+        when(administrationService.getGlobalProperty(eq("bahmni.lookupExternalTerminologyServer"))).thenReturn("false");
     }
 
     @Test
@@ -237,7 +237,7 @@ public class BahmniDiagnosisServiceImplTest {
 
     @Test
     public void shouldReturnTrueWhenExternalTerminologyServerLookupNeeded() {
-        when(administrationService.getGlobalProperty(eq("bahmni.externalTSLookupNeeded"))).thenReturn("TRUE");
+        when(administrationService.getGlobalProperty(eq("bahmni.lookupExternalTerminologyServer"))).thenReturn("TRUE");
         boolean externalTerminologyServerLookupNeeded = bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded();
         assertTrue(externalTerminologyServerLookupNeeded);
     }

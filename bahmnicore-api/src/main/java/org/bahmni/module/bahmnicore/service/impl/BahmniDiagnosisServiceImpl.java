@@ -39,7 +39,7 @@ import java.util.List;
 @Component
 public class BahmniDiagnosisServiceImpl implements BahmniDiagnosisService {
 
-    private static final String BAHMNI_EXTERNAL_TERMINOLOGY_SERVER_LOOKUP_NEEDED = "bahmni.externalTSLookupNeeded";
+    private static final String BAHMNI_EXTERNAL_TERMINOLOGY_SERVER_LOOKUP_NEEDED = "bahmni.lookupExternalTerminologyServer";
     private static final boolean DEFAULT_EXTERNAL_TERMINOLOGY_SERVER_LOOKUP_NEEDED = false;
 
     private EncounterService encounterService;
