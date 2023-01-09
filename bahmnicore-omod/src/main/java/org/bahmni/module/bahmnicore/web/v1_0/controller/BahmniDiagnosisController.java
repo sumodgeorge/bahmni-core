@@ -2,13 +2,13 @@ package org.bahmni.module.bahmnicore.web.v1_0.controller;
 
 import org.apache.commons.lang3.LocaleUtils;
 import org.bahmni.module.bahmnicore.service.BahmniDiagnosisService;
+import org.bahmni.module.terminologyservices.api.TerminologyInitiatorService;
 import org.openmrs.Concept;
 import org.openmrs.ConceptMap;
 import org.openmrs.ConceptName;
 import org.openmrs.ConceptReferenceTerm;
 import org.openmrs.ConceptSearchResult;
 import org.openmrs.ConceptSource;
-import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.bahmniemrapi.diagnosis.contract.BahmniDiagnosisRequest;
 import org.openmrs.module.emrapi.concept.EmrConceptService;
@@ -38,15 +38,15 @@ public class BahmniDiagnosisController extends BaseRestController {
 
     private BahmniDiagnosisService bahmniDiagnosisService;
 
-    private ConceptService conceptService;
-
     private EmrConceptService emrService;
 
+    private TerminologyInitiatorService terminologyInitiatorService;
+
     @Autowired
-    public BahmniDiagnosisController(BahmniDiagnosisService bahmniDiagnosisService, ConceptService conceptService, EmrConceptService emrService) {
+    public BahmniDiagnosisController(BahmniDiagnosisService bahmniDiagnosisService, EmrConceptService emrService, TerminologyInitiatorService terminologyInitiatorService) {
         this.bahmniDiagnosisService = bahmniDiagnosisService;
-        this.conceptService = conceptService;
         this.emrService = emrService;
+        this.terminologyInitiatorService = terminologyInitiatorService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "search")
@@ -79,9 +79,7 @@ public class BahmniDiagnosisController extends BaseRestController {
     }
 
     private List<SimpleObject> getDiagnosisConceptsFromExternalTS(String query, Integer limit, String locale) {
-        //TO-DO : Update APIs from SNOMED Module
-        //For now, return response from EMR API
-        return getDiagnosisConcepts(query, limit, locale);
+        return terminologyInitiatorService.getResponseList(query, limit, locale);
     }
 
     private List<SimpleObject> getDiagnosisConcepts(String query, Integer limit, String locale) {

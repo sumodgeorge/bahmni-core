@@ -1,6 +1,7 @@
 package org.bahmni.module.bahmnicore.web.v1_0.controller;
 
 import org.bahmni.module.bahmnicore.service.BahmniDiagnosisService;
+import org.bahmni.module.terminologyservices.api.TerminologyInitiatorService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,9 @@ public class BahmniDiagnosisControllerTest {
 
     @Mock
     private EmrConceptService emrService;
+
+    @Mock
+    private TerminologyInitiatorService terminologyInitiatorService;
 
     @Mock
     private AdministrationService administrationService;
@@ -79,9 +83,19 @@ public class BahmniDiagnosisControllerTest {
 
     @Test
     public void shouldSearchDiagnosisByNameFromExternalTerminologyServer() throws Exception {
+        String malariaConceptUuid = "uuid1";
+        SimpleObject MalariaObject = new SimpleObject();
+        MalariaObject.add("conceptName", searchTerm);
+        MalariaObject.add("conceptUuid", malariaConceptUuid);
+        MalariaObject.add("matchedName", searchTerm);
+
         when(bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded()).thenReturn(true);
+        when(terminologyInitiatorService.getResponseList(searchTerm, searchLimit, locale)).thenReturn(Collections.singletonList(MalariaObject));
+
         List<SimpleObject> searchResults = (List< SimpleObject >)bahmniDiagnosisController.search(searchTerm, searchLimit, locale);
         assertNotNull(searchResults);
-        //To Do : SNOMED Module API
+        assertEquals(searchResults.size(), 1);
+        assertEquals(searchResults.get(0).get("conceptName"), searchTerm);
+        assertEquals(searchResults.get(0).get("conceptUuid"), malariaConceptUuid);
     }
 }
