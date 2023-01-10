@@ -24,14 +24,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @PowerMockIgnore("javax.management.*")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Context.class)
-public class BahmniDiagnosisControllerTest {
+public class BahmniConceptSearchControllerTest {
 
     @Mock
     private BahmniDiagnosisService bahmniDiagnosisService;
@@ -46,7 +47,7 @@ public class BahmniDiagnosisControllerTest {
     private AdministrationService administrationService;
 
     @InjectMocks
-    private BahmniDiagnosisController bahmniDiagnosisController;
+    private BahmniConceptSearchController bahmniConceptSearchController;
 
     String searchTerm = "Malaria";
     int searchLimit = 20;
@@ -73,7 +74,7 @@ public class BahmniDiagnosisControllerTest {
 
         when(emrService.conceptSearch(searchTerm, LocaleUtility.getDefaultLocale(), null, Collections.EMPTY_LIST, Collections.EMPTY_LIST, searchLimit)).thenReturn(Collections.singletonList(conceptSearchResult));
 
-        List<SimpleObject> searchResults = (List< SimpleObject >)bahmniDiagnosisController.search(searchTerm, searchLimit, locale);
+        List<SimpleObject> searchResults = (List< SimpleObject >) bahmniConceptSearchController.search(searchTerm, searchLimit, locale);
 
         assertNotNull(searchResults);
         assertEquals(searchResults.size(), 1);
@@ -92,7 +93,7 @@ public class BahmniDiagnosisControllerTest {
         when(bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded()).thenReturn(true);
         when(terminologyInitiatorService.getResponseList(searchTerm, searchLimit, locale)).thenReturn(Collections.singletonList(MalariaObject));
 
-        List<SimpleObject> searchResults = (List< SimpleObject >)bahmniDiagnosisController.search(searchTerm, searchLimit, locale);
+        List<SimpleObject> searchResults = (List< SimpleObject >) bahmniConceptSearchController.search(searchTerm, searchLimit, locale);
         assertNotNull(searchResults);
         assertEquals(searchResults.size(), 1);
         assertEquals(searchResults.get(0).get("conceptName"), searchTerm);
