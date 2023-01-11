@@ -217,6 +217,7 @@ public class BahmniDiagnosisServiceImpl implements BahmniDiagnosisService {
         String externalTSLookupNeeded = administrationService.getGlobalProperty(BAHMNI_EXTERNAL_TERMINOLOGY_SERVER_LOOKUP_NEEDED);
         return StringUtils.isNotBlank(externalTSLookupNeeded) ? Boolean.valueOf(externalTSLookupNeeded) : DEFAULT_EXTERNAL_TERMINOLOGY_SERVER_LOOKUP_NEEDED;
     }
+
     @Override
     public Collection<Concept> getDiagnosisSets() {
         return emrApiProperties.getDiagnosisSets();

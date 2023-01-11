@@ -1,7 +1,7 @@
 package org.bahmni.module.bahmnicore.web.v1_0.controller;
 
 import org.bahmni.module.bahmnicore.service.BahmniDiagnosisService;
-import org.bahmni.module.terminologyservices.api.TerminologyInitiatorService;
+import org.bahmni.module.terminologyservices.api.TerminologyLookupService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +41,7 @@ public class BahmniConceptSearchControllerTest {
     private EmrConceptService emrService;
 
     @Mock
-    private TerminologyInitiatorService terminologyInitiatorService;
+    private TerminologyLookupService terminologyLookupService;
 
     @Mock
     private AdministrationService administrationService;
@@ -91,7 +91,7 @@ public class BahmniConceptSearchControllerTest {
         MalariaObject.add("matchedName", searchTerm);
 
         when(bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded()).thenReturn(true);
-        when(terminologyInitiatorService.getResponseList(searchTerm, searchLimit, locale)).thenReturn(Collections.singletonList(MalariaObject));
+        when(terminologyLookupService.getResponseList(searchTerm, searchLimit, locale)).thenReturn(Collections.singletonList(MalariaObject));
 
         List<SimpleObject> searchResults = (List< SimpleObject >) bahmniConceptSearchController.search(searchTerm, searchLimit, locale);
         assertNotNull(searchResults);

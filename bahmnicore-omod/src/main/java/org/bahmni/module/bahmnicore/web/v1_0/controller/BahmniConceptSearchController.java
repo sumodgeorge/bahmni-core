@@ -2,7 +2,7 @@ package org.bahmni.module.bahmnicore.web.v1_0.controller;
 
 import org.apache.commons.lang3.LocaleUtils;
 import org.bahmni.module.bahmnicore.service.BahmniDiagnosisService;
-import org.bahmni.module.terminologyservices.api.TerminologyInitiatorService;
+import org.bahmni.module.terminologyservices.api.TerminologyLookupService;
 import org.openmrs.Concept;
 import org.openmrs.ConceptMap;
 import org.openmrs.ConceptName;
@@ -39,13 +39,13 @@ public class BahmniConceptSearchController extends BaseRestController {
 
     private EmrConceptService emrService;
 
-    private TerminologyInitiatorService terminologyInitiatorService;
+    private TerminologyLookupService terminologyLookupService;
 
     @Autowired
-    public BahmniConceptSearchController(BahmniDiagnosisService bahmniDiagnosisService, EmrConceptService emrService, TerminologyInitiatorService terminologyInitiatorService) {
+    public BahmniConceptSearchController(BahmniDiagnosisService bahmniDiagnosisService, EmrConceptService emrService, TerminologyLookupService terminologyLookupService) {
         this.bahmniDiagnosisService = bahmniDiagnosisService;
         this.emrService = emrService;
-        this.terminologyInitiatorService = terminologyInitiatorService;
+        this.terminologyLookupService = terminologyLookupService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "concept")
@@ -54,7 +54,7 @@ public class BahmniConceptSearchController extends BaseRestController {
                          @RequestParam(required = false, defaultValue = DEFAULT_NONE) String locale) throws Exception {
         boolean externalTerminologyServerLookupNeeded = bahmniDiagnosisService.isExternalTerminologyServerLookupNeeded();
         if(externalTerminologyServerLookupNeeded) {
-            return terminologyInitiatorService.getResponseList(query, limit, locale);
+            return terminologyLookupService.getResponseList(query, limit, locale);
         } else {
             return getDiagnosisConcepts(query, limit, locale);
         }
