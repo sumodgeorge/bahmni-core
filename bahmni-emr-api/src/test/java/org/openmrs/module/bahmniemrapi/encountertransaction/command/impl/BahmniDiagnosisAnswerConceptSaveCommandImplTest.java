@@ -18,6 +18,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.api.context.UserContext;
 import org.openmrs.module.bahmniemrapi.diagnosis.contract.BahmniDiagnosisRequest;
 import org.openmrs.module.bahmniemrapi.encountertransaction.contract.BahmniEncounterTransaction;
+import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.diagnosis.Diagnosis;
 import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
 import org.powermock.api.mockito.PowerMockito;
@@ -51,6 +52,9 @@ public class BahmniDiagnosisAnswerConceptSaveCommandImplTest {
     ConceptService conceptService;
 
     @Mock
+    EmrApiProperties emrApiProperties;
+
+    @Mock
     TerminologyLookupService terminologyLookupService;
 
     @Mock
@@ -62,7 +66,7 @@ public class BahmniDiagnosisAnswerConceptSaveCommandImplTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    String GP_DEFAULT_CONCEPT_SET_FOR_DIAGNOSIS_CONCEPT_UUID = "bahmni.diagnosisSetForNewConcepts";
+    String GP_DEFAULT_CONCEPT_SET_FOR_DIAGNOSIS_CONCEPT_UUID = "bahmni.diagnosisSetForNewDiagnosisConcepts";
 
     @Before
     public void setUp() {
