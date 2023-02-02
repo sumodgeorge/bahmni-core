@@ -38,4 +38,11 @@ public interface BahmniDrugOrderService {
 
     List<BahmniDrugOrder> getDrugOrders(String patientUuid, Boolean isActive, Set<Concept> conceptsToFilter, Set<Concept> conceptsToExclude,
                                         String patientProgramUuid) throws ParseException;
+
+    Map<BahmniDrugOrder, Integer> getMergedDrugOrderMap(List<BahmniDrugOrder> drugOrderList);
+
+    String getPrescriptionAsString(Map<BahmniDrugOrder, Integer> drugOrderDurationMap);
+
+    String getAllProviderAsString(List<BahmniDrugOrder> drugOrders);
+
 }
