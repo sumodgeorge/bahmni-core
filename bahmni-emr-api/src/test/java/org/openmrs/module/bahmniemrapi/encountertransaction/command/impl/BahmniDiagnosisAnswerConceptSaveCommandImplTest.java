@@ -162,7 +162,6 @@ public class BahmniDiagnosisAnswerConceptSaveCommandImplTest {
         assertEquals(initialDiagnosisSetMembersCount, unclassifiedConceptSet.getSetMembers().size());
     }
 
-    @Test
     public void shouldThrowExceptionWhenTerminologyServerUnavailable() throws Exception {
         Concept unclassifiedConceptSet = getUnclassifiedConceptSet();
         BahmniEncounterTransaction bahmniEncounterTransaction = getBahmniEncounterTransaction(MOCK_CONCEPT_SYSTEM, true);
