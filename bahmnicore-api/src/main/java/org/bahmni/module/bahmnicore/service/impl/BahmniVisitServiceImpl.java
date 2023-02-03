@@ -3,6 +3,7 @@ package org.bahmni.module.bahmnicore.service.impl;
 import org.bahmni.module.bahmnicore.dao.VisitDao;
 import org.bahmni.module.bahmnicore.service.BahmniVisitService;
 import org.openmrs.Encounter;
+import org.openmrs.Location;
 import org.openmrs.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,12 @@ public class BahmniVisitServiceImpl implements BahmniVisitService {
     @Override
     public List<Encounter> getAdmitAndDischargeEncounters(Integer visitId) {
         return visitDao.getAdmitAndDischargeEncounters(visitId);
+    }
+
+    @Override
+    public String getParentLocationNameForVisit(Location location) {
+        if(location.getParentLocation()!=null)
+            getParentLocationNameForVisit(location.getParentLocation());
+        return location.getName();
     }
 }

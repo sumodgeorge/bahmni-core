@@ -1,6 +1,7 @@
 package org.bahmni.module.bahmnicore.service;
 
 import org.openmrs.Encounter;
+import org.openmrs.Location;
 import org.openmrs.Visit;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface BahmniVisitService {
     Visit getVisitSummary(String visitUuid);
 
     List<Encounter> getAdmitAndDischargeEncounters(Integer visitId);
+
+    String getParentLocationNameForVisit(Location location);
 }

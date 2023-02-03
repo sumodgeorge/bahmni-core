@@ -145,13 +145,14 @@ public class BahmniDrugOrderController extends BaseRestController {
 
     @RequestMapping(value = baseUrl+ "/sendPrescriptionSMS", method = RequestMethod.POST)
     @ResponseBody
-    public Object sendPrescriptionSMS(@RequestBody PrescriptionSMS prescription) throws Exception{
+    public Object sendPrescriptionSMS(@RequestBody PrescriptionSMS prescription) throws Exception {
         Visit visit = bahmniVisitService.getVisitSummary(prescription.getVisitUuid());
+        String locationName = bahmniVisitService.getParentLocationNameForVisit(visit.getLocation());
         List<BahmniDrugOrder> drugOrderList = getSortedBahmniDrugOrdersForVisit(visit.getPatient().getUuid(), visit.getUuid());
         Map<BahmniDrugOrder, Integer> mergedDrugOrderMap = drugOrderService.getMergedDrugOrderMap(drugOrderList);
         String providerString = drugOrderService.getAllProviderAsString(drugOrderList);
         String prescriptionString = drugOrderService.getPrescriptionAsString(mergedDrugOrderMap);
-        String prescriptionSMSContent = smsService.getPrescriptionMessage(prescription.getLocale(), visit.getStartDatetime(), visit.getPatient(), visit.getLocation().toString(), providerString, prescriptionString);
+        String prescriptionSMSContent = smsService.getPrescriptionMessage(prescription.getLocale(), visit.getStartDatetime(), visit.getPatient(), locationName, providerString, prescriptionString);
         return smsService.sendSMS(visit.getPatient().getAttribute("phoneNumber").getValue(), prescriptionSMSContent);
     }
 

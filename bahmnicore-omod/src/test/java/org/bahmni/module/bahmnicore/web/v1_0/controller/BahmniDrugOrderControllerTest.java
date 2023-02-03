@@ -91,6 +91,7 @@ public class BahmniDrugOrderControllerTest {
         when(SMSProperties.getProperty("sms.timeZone")).thenReturn("IST");
         when(SMSProperties.getProperty("sms.url")).thenReturn("dummyurl");
         when(bahmniVisitService.getVisitSummary(prescriptionSMS.getVisitUuid())).thenReturn(visit);
+        when(bahmniVisitService.getParentLocationNameForVisit(visit.getLocation())).thenReturn(visit.getLocation().getName());
         when(bahmniDrugOrderService.getMergedDrugOrderMap(new ArrayList<BahmniDrugOrder>())).thenReturn(null);
         when(bahmniDrugOrderService.getAllProviderAsString(new ArrayList<BahmniDrugOrder>())).thenReturn("Superman");
         when(bahmniDrugOrderService.getPrescriptionAsString(null)).thenReturn("1. Paracetamol 150 mg/ml, 50 ml, Immediately-1 Days, start from 31-01-2023");
