@@ -65,7 +65,7 @@
         <rulesEngineVersion>1.0.0</rulesEngineVersion>
         <bahmniJavaUtilsVersion>1.0.0</bahmniJavaUtilsVersion>
         <javaxServletVersion>4.0.1</javaxServletVersion>
-        <log4jVersion>2.17.1</log4jVersion>
+        <log4jVersion>2.25.3</log4jVersion>
         <idgenWebServicesVersion>1.4.0</idgenWebServicesVersion>
         <providermanagementVersion>2.14.0</providermanagementVersion>
         <velocityVersion>1.6.2</velocityVersion>
